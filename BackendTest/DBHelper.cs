@@ -13,20 +13,6 @@ namespace BackendTest
 
         const string CONNSTR = "data source = localhost; initial catalog = Test; integrated security = true;";
 
-        public static bool ObtainLock(int orderId)
-        {
-            using (var con = new SqlConnection())
-            {
-                SqlCommand commandObj = new SqlCommand(CONNSTR, con);
-
-                con.Open();
-                return true;
-            }
-
-            return false;
-        }
-
-
         /// <summary>
         /// Get order for processing
         /// </summary>
