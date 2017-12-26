@@ -36,7 +36,7 @@ namespace BackendTest
         {
             while (true)
             {
-                string serviceName = "";
+                string serviceName = $"Service{Thread.CurrentThread.ManagedThreadId}";
                 int orderId = DBHelper.GetOrder();
                 Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId} obtained order: {orderId} for processing");
                 ProcessOrder(orderId, serviceName);
