@@ -70,4 +70,7 @@
     <Build Include="dbo\Stored Procedures\GetOrderForProcessing.sql" />
     <Build Include="dbo\Stored Procedures\MarkOrderAsProcessed.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="dbo\Script.PostDeployment1.sql" />
+  </ItemGroup>
 </Project>
