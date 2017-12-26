@@ -13,17 +13,20 @@ namespace BackendTest
 
         const string CONNSTR = "data source = localhost; initial catalog = Test; integrated security = true;";
 
+        
         /// <summary>
         /// Get order for processing
         /// </summary>
         /// <returns></returns>
-        public static int GetOrder()
+        public static int GetOrder(string serviceName)
         {
             try
             {
                 using (var con = new SqlConnection(CONNSTR))
                 {
                     SqlCommand commandObj = new SqlCommand("GetOrderForProcessing", con);
+                    commandObj.CommandType = CommandType.StoredProcedure;
+                    commandObj.Parameters.Add(new SqlParameter("@servicename", serviceName));
                     con.Open();
                     return (int)commandObj.ExecuteScalar();
                 }
