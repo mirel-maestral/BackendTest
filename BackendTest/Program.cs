@@ -36,21 +36,22 @@ namespace BackendTest
         {
             while (true)
             {
+                string serviceName = "";
                 int orderId = DBHelper.GetOrder();
                 Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId} obtained order: {orderId} for processing");
-                ProcessOrder(orderId);
+                ProcessOrder(orderId, serviceName);
                 Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId} has finished processing the order: {orderId}");
             }
         }
 
-        public static bool ProcessOrder(int orderId)
+        public static bool ProcessOrder(int orderId, string serviceName)
         {
             //Sleep the thread randomly to simulate processing
             int seconds = new Random().Next(1, 6);
             Thread.Sleep( TimeSpan.FromSeconds(seconds) );
             Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId} was sleeping for {seconds}");
 
-            DBHelper.MarkOrderAsProcessed(orderId);
+            DBHelper.MarkOrderAsProcessed(orderId, serviceName);
             return true;
         }
     }

@@ -5,7 +5,8 @@
 -- =============================================
 CREATE PROCEDURE [dbo].[MarkOrderAsProcessed]
 	-- Add the parameters for the stored procedure here
-	@orderid int
+	@orderid int,
+	@service NVARCHAR(50)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -14,7 +15,7 @@ BEGIN
 
 	BEGIN TRAN
 
-    update Orders set Processed = 1 
+    update Orders set Processed = 1, ProcessedByInstance = @service
 	where Id = @orderid
 
 	INSERT INTO ProcessingLog([Time], OrderId) VALUES(GETDATE(), @orderid)
