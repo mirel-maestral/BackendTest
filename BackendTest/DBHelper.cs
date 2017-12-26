@@ -40,7 +40,7 @@ namespace BackendTest
         }
 
 
-        public static void MarkOrderAsProcessed(int orderId)
+        public static void MarkOrderAsProcessed(int orderId, string serviceName)
         {
             try
             {
@@ -49,6 +49,7 @@ namespace BackendTest
                     SqlCommand commandObj = new SqlCommand("MarkOrderAsProcessed", con);
                     commandObj.CommandType = CommandType.StoredProcedure;
                     commandObj.Parameters.Add( new SqlParameter("@orderid", orderId) );
+                    commandObj.Parameters.Add(new SqlParameter("@service", serviceName));
                     con.Open();
                     commandObj.ExecuteNonQuery();
                 }
